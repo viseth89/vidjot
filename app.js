@@ -1,10 +1,11 @@
-const express   = require('express');
-const exphbs    = require('express-handlebars');
-const methodOverride = require('method-override')
-const flash = require('connect-flash');
-const session = require('express-session');
-const bodyParser = require('body-parser');
-const mongoose  = require('mongoose');
+const express           = require('express');
+const path              = require('path');
+const exphbs            = require('express-handlebars');
+const methodOverride    = require('method-override')
+const flash             = require('connect-flash');
+const session           = require('express-session');
+const bodyParser        = require('body-parser');
+const mongoose          = require('mongoose');
 
 const app = express();
 
@@ -31,6 +32,9 @@ app.set('view engine', 'handlebars');
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// Static Folder
+app.use(express.static(path.join(__dirname, 'public')))
 
 // Method override middleware
 app.use(methodOverride('_method'))
